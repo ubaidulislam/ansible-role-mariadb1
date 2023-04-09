@@ -1,28 +1,28 @@
 ---
-- name: (1) main.yml | Include OS-specific variables
+- name: main.yml | Include OS-specific variables
   include_vars: "vars-{{ ansible_os_family }}.yml"
 
-- name: (1) main.yml | Getting installed packages
+- name: main.yml | Getting installed packages
   package_facts:
     manager: "auto"
 
-- name: (1) main.yml | MariaDB for {{ ansible_os_family }}
+- name: main.yml | MariaDB for {{ ansible_os_family }}
   include_tasks: "2.setup-{{ ansible_os_family }}.yml"
 
-- name: (1) main.yml | Configuring MariaDB
+- name: main.yml | Configuring MariaDB
   include_tasks: "3.configure.yml"
 
-- name: (1) main.yml | Securing MariaDB
+- name: main.yml | Securing MariaDB
   include_tasks: "4.secure-installation.yml"
   
-- name: (1) main.yml | UFW
+- name: main.yml | UFW
   include_tasks: 5.ufw.yml
   when: "'ufw' in ansible_facts.packages"
 
-#- name: (1) main.yml | Modifying database(s)
+#- name: main.yml | Modifying database(s)
 #  include_tasks: "6.database.yml"
 #  when: mariadb_database is defined
 
-#- name: (1) main.yml | Modifying user(s)
+#- name: main.yml | Modifying user(s)
 #  include_tasks: "6.user.yml"
 #  when: mariadb_user is defined

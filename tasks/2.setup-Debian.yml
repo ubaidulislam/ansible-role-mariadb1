@@ -1,4 +1,10 @@
 ---
+- name: (2) setup-Debian.yml | Create keyring directory if not exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0644'
+
 - name: (2) setup-Debian.yml | Adding MariaDB GPG key
   get_url:
     url: https://supplychain.mariadb.com/mariadb-keyring-2019.gpg
