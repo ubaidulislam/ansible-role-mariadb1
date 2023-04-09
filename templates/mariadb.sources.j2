@@ -1,0 +1,7 @@
+# {{ansible_managed}}
+
+Types: deb
+URIs: {{ mariadb_repo_url }}
+Suites: {{ansible_distribution_release}}
+Components: main
+Signed-By: /etc/apt/keyring/mariadb.gpg

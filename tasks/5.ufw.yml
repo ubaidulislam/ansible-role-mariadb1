@@ -1,0 +1,6 @@
+---
+- name: (5) ufw.yml | Allowing Database traffic through UFW
+  ufw:
+    rule: allow
+    port: "3306"
+    state: enabled

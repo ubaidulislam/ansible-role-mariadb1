@@ -1,0 +1,15 @@
+---
+- name: (6) user.yml | Modifying users(s)
+  mysql_user:
+    name: '{{ item.name }}'
+    host: '{{ item.host | default("localhost") }}'
+    password: '{{ item.password }}'
+    priv: '{{ item.priv | default("*.*:USAGE") }}'
+    state: '{{ item.state | default("present") }}'
+    append_privs: '{{ item.append_privs | default("false") }}'
+    encrypted: '{{ item.encrypted | default("false") }}'
+    update_password: always
+    login_user: root
+    login_password: '{{ mysql_root_password }}'
+  loop: '{{ mariadb_user }}'
+  no_log: true

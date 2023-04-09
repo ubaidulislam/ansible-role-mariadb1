@@ -1,0 +1,18 @@
+---
+mysql_root_username: "root"
+mysql_root_password: "candy"
+#mysql_old_root_password: "apple"
+
+
+mariadb_database:
+  - name: db_nc
+    collation: utf8_unicode_ci
+    encoding: utf8
+    state: present
+
+mariadb_user:
+  - name: nc1
+    host: localhost
+    password: example
+    priv: "db_nc.*:ALL"
+    state: present
