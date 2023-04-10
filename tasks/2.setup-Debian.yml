@@ -3,7 +3,7 @@
   ansible.builtin.file:
     path: /etc/apt/keyrings
     state: directory
-    mode: '0644'
+    mode: '0755'
 
 - name: (2) setup-Debian.yml | Adding MariaDB GPG key
   get_url:
