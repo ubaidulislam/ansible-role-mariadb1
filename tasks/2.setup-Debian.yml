@@ -1,6 +1,6 @@
 ---
-- name: (2) setup-Debian.yml | Create keyring directory if not exists
-  ansible.builtin.file:
+- name: (2) setup-Debian.yml | Creating keyring directory if not exists
+  file:
     path: /etc/apt/keyrings
     state: directory
     mode: '0755'
@@ -30,9 +30,9 @@
     state: latest
     policy_rc_d: 101
 
-- name: (2) setup-Debian.yml | Installing MySQL-python
+- name: (2) setup-Debian.yml | Installing Python3-PyMySQL
   apt:
-    name: python-mysqldb
+    name: python3-pymysql
     update_cache: true
     autoremove: true
     autoclean: true

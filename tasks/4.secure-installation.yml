@@ -1,28 +1,10 @@
 ---
-- name: (4) secure-installation.yml | Verifying/Updating root password
-  block:
-    - name: secure-installation.yml | Verifying/Updating root password
-      mysql_user:
-        name: root
-        host_all: true
-        password: '{{ mysql_root_password }}'
-        check_implicit_admin: true
-        login_user: root
-        login_password: '{{ mysql_old_root_password | default(mysql_root_password) }}'
-      no_log: true
-
-  rescue:
-    - name: Password Error.
-      fail:
-        msg: "Failed to update/verify password. Password is either incorrect or you have forgot to unset mysql_old_root_password after setting a new password."
-
 - name: (4) secure-installation.yml | Removing anonymous users
   mysql_user:
     name: ''
     host_all: true
     state: absent
     login_user: root
-    login_password: '{{ mysql_root_password }}'
   no_log: true
 
 - name: (4) secure-installation.yml | Removing 'mysql' users
