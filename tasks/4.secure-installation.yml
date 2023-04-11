@@ -5,7 +5,7 @@
     host_all: true
     state: absent
     login_user: root
-  no_log: true
+    check_implicit_admin: true
 
 - name: (4) secure-installation.yml | Removing 'mysql' users
   mysql_user:
