@@ -1,18 +1,18 @@
 ---
-- name: (2) setup-Debian.yml | Creating keyring directory if not exists
+- name: (2.1) setup-Debian.yml | Creating keyring directory if not exists
   file:
     path: /etc/apt/keyrings
     state: directory
     mode: '0755'
 
-- name: (2) setup-Debian.yml | Adding MariaDB GPG key
+- name: (2.2) setup-Debian.yml | Adding MariaDB GPG key
   get_url:
     url: https://supplychain.mariadb.com/mariadb-keyring-2019.gpg
     dest: /etc/apt/keyrings/MariaDB.gpg
     mode: '0755'
     force: true
 
-- name: (2) setup-Debian.yml | Adding mariadb.sources
+- name: (2.3) setup-Debian.yml | Adding mariadb.sources
   template:
     src: mariadb.sources.j2
     dest:  /etc/apt/sources.list.d/mariadb.sources
@@ -20,7 +20,7 @@
     group: root
     mode: 0644
 
-- name: (2) setup-Debian.yml | Installing MariaDB
+- name: (2.4) setup-Debian.yml | Installing MariaDB
   apt:
     name: mariadb-server
     update_cache: true
@@ -30,7 +30,7 @@
     state: latest
     policy_rc_d: 101
 
-- name: (2) setup-Debian.yml | Installing Python3-PyMySQL
+- name: (2.5) setup-Debian.yml | Installing Python3-PyMySQL
   apt:
     name: python3-pymysql
     update_cache: true

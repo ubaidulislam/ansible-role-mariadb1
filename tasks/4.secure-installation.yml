@@ -6,6 +6,7 @@
     state: absent
     login_user: root
     check_implicit_admin: true
+    login_unix_socket: /run/mysqld/mysqld.sock
 
 - name: (4) secure-installation.yml | Removing 'mysql' users
   mysql_user:
@@ -13,5 +14,19 @@
     host_all: true
     state: absent
     login_user: root
-    login_password: '{{ mysql_root_password }}'
-  no_log: true
+    check_implicit_admin: true
+    login_unix_socket: /run/mysqld/mysqld.sock
+
+- name: (4) secure-installation.yml | Removing test database
+  mysql_db:
+    name: test
+    state: absent
+    login_user: root
+    check_implicit_admin: true
+    login_unix_socket: /run/mysqld/mysqld.sock
+
+- name: Reload privilege tables
+  command: 'mysql -ne FLUSH PRIVILEGES'
+  login_user: root
+  check_implicit_admin: true
+  login_unix_socket: /run/mysqld/mysqld.sock

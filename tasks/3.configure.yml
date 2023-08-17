@@ -1,5 +1,5 @@
 ---
-- name: (3) configure.yml | Modifying my.cnf
+- name: (3.1) configure.yml | Modifying my.cnf
   template:
     src: my.cnf.j2
     dest:  /etc/mysql/my.cnf
@@ -8,5 +8,5 @@
     mode: 0644
   notify: restart mariadb
 
-- name: (3) configure.yml | Flush handlers
+- name: (3.2) configure.yml | Flush handlers
   meta: flush_handlers
