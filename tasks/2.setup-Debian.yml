@@ -7,7 +7,7 @@
 
 - name: (2.2) setup-Debian.yml | Adding MariaDB GPG key
   get_url:
-    url: https://supplychain.mariadb.com/mariadb-keyring-2019.gpg
+    url: https://mariadb.org/mariadb_release_signing_key.pgp
     dest: /etc/apt/keyrings/MariaDB.gpg
     mode: '0755'
     force: true
